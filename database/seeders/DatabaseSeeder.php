@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pengiriman;
 use Carbon\Carbon;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -20,27 +21,35 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $user = \App\Models\User::create([
-            // 'id' => Str::uuid(),
-            'name' => 'Surya Wana Bakti',
-            'email' => 'surya@square',
+            'name' => 'Admin',
+            'email' => 'agent@admin',
             'password' => bcrypt('qwerty123'),
             'last_seen' => Carbon::now(),
-            'position' => 'super admin'
+            'no_wa' => '081958971344',
         ]);
 
-        $usera = \App\Models\User::factory(5)->create();
+        $pengiriman = Pengiriman::create([
+            'no_resi' => '1203012049219',
+            'nama_customer' => 'Mark Zuckberg',
+            'nohp_customer' => '085156018507',
+            'alamat_customer' => 'BTP BLOK G 134',
+            'nama_barang' => 'Laptop Asus ROG',
+            'berat' => 3.5,
+            'ongkir' => 100000,
+        ]);
 
+        $user2 = \App\Models\User::create([
+            'name' => 'Admin JNT',
+            'email' => 'jnt@admin',
+            'password' => bcrypt('qwerty123'),
+            'last_seen' => Carbon::now(),
+            'no_wa' => '081958971344',
+        ]);
 
-
-        $roleSuper = Role::create(['name' => 'super-admin']);
-        $roleAdmin = Role::create(['name' => 'admin']);
-
-        $user->assignRole($roleSuper);
-
-
-        $permission = Permission::create(['name' => 'full-users']);
-
-        $roleSuper->givePermissionTo($permission);
-        // $roleAdmin->givePermissionTo($permission);
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'customer']);
+        Role::create(['name' => 'admin jnt']);
+        $user2->assignRole('admin jnt');
+        $user->assignRole('admin');
     }
 }

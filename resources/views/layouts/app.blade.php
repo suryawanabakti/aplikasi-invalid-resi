@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Square | Application Starter Pack Blade</title>
+    <title>Invalid Resi</title>
 
     <meta name="description" content="" />
 
@@ -37,6 +37,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -45,6 +46,7 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/assets/js/config.js"></script>
+
 
     <style>
         @media only screen and (max-width: 600px) {
@@ -60,6 +62,7 @@
 </head>
 
 <body>
+    @include('sweetalert::alert')
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
@@ -88,7 +91,7 @@
                                 class="container-fluid d-flex flex-md-row flex-column justify-content-between align-items-md-center gap-1 container-p-x py-3">
                                 <div>
                                     <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/landing/"
-                                        target="_blank" class="footer-text fw-bolder">Square</a>
+                                        target="_blank" class="footer-text fw-bolder">Tifanni</a>
                                     ©
                                 </div>
                                 <div>
@@ -149,10 +152,12 @@
 
     <!-- Page JS -->
     <script src="/assets/js/dashboards-analytics.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-
+    @stack('js')
     <script>
         $(document).ready(function() {
             var $btnUp = $('#btnUp').hide();
