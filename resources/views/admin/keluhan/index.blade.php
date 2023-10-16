@@ -35,7 +35,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($keluhan->status_masalah == 'proses')
+                                            @if ($keluhan->status_masalah == 'belum selesai')
                                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal{{ $keluhan->id }}">
                                                     Penyelesaian Masalah

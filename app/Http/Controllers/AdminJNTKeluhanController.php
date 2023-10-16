@@ -19,8 +19,8 @@ class AdminJNTKeluhanController extends Controller
         $keluhan->update([
             'approve' => 'terima'
         ]);
-        Alert::success("Berhasil Terima Keluhan");
 
+        Alert::success("Berhasil Terima Keluhan");
         Controller::sendWa($keluhan->user->no_wa, "Keluhan Berhasil di terima");
         return back();
     }

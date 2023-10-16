@@ -36,22 +36,15 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'no_wa' => ['required']
         ]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'no_wa' => $request->no_wa,
             'password' => Hash::make($request->password),
         ]);
-
         $user->assignRole('customer');
-
         event(new Registered($user));
-
         Auth::login($user);
-
-
-
         return redirect(RouteServiceProvider::HOME);
     }
 }

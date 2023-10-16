@@ -31,7 +31,7 @@ class Controller extends BaseController
             ),
             CURLOPT_HTTPHEADER => array(
                 // 
-                'Authorization: EypNzaYFdb#GDYTqSzX' //change TOKEN to your actual token
+                'Authorization: #EypNzaYFdb#GDYTqSzX' //change TOKEN to your actual token
             ),
         ));
 

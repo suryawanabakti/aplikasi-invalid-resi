@@ -30,7 +30,6 @@ class CustomerPengirimanController extends Controller
             'user_id' => auth()->id(),
             'keluhan' => $request->keluhan
         ]);
-
         return back()->with('success', ' Berhasil Memberi keluhan pada pengiriman dengan nomor resi : ' .  $pengiriman->no_resi);
     }
 }

@@ -8,6 +8,8 @@ use App\Http\Controllers\AdminPengajuanSuratController;
 use App\Http\Controllers\CustomerKeluhanController;
 use App\Http\Controllers\CustomerPengirimanController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Keluhan;
+use App\Models\Pengiriman;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,18 +28,22 @@ Route::get('/', function () {
 });
 
 Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
+    $countKeluhan = Keluhan::count();
+    $countKeluhanBelumSelesai = Keluhan::where('status_masalah', 'belum selesai')->count();
+    $countPengiriman = Pengiriman::count();
+    return view('admin.dashboard', compact('countKeluhan', 'countKeluhanBelumSelesai', 'countPengiriman'));
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/customer/dashboard', function () {
     return view('customer.dashboard');
 })->middleware(['auth', 'verified'])->name('customer.dashboard');
 
 Route::middleware('auth')->group(function () {
-
     Route::get('/admin-jnt/pengiriman', [AdminJNTPengirimanController::class, 'index'])->name('admin-jnt.pengiriman.index');
-    Route::get('/admin-jnt/pengiriman/{pengiriman}', [AdminJNTPengirimanController::class, 'show'])->name('admin-jnt.pengiriman.show');
-    Route::post('/admin-jnt/pengiriman/{pengiriman}/keterangan', [AdminJNTPengirimanController::class, 'addKeterangan'])->name('admin-jnt.pengiriman.addKeterangan');
     Route::get('/admin-jnt/pengiriman/create', [AdminJNTPengirimanController::class, 'create'])->name('admin-jnt.pengiriman.create');
+    Route::get('/admin-jnt/pengiriman/{pengiriman}', [AdminJNTPengirimanController::class, 'show'])->name('admin-jnt.pengiriman.show');
+    Route::get('/admin-jnt/pengiriman/{pengiriman}/delete', [AdminJNTPengirimanController::class, 'destroy'])->name('admin-jnt.pengiriman.destroy');
+    Route::post('/admin-jnt/pengiriman/{pengiriman}/keterangan', [AdminJNTPengirimanController::class, 'addKeterangan'])->name('admin-jnt.pengiriman.addKeterangan');
     Route::post('/admin-jnt/pengiriman', [AdminJNTPengirimanController::class, 'store'])->name('admin-jnt.pengiriman.store');
 
     Route::get('/admin-jnt/keluhan', [AdminJNTKeluhanController::class, 'index'])->name('admin-jnt.keluhan.index');

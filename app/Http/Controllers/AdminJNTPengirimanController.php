@@ -24,7 +24,7 @@ class AdminJNTPengirimanController extends Controller
 
     public function show(Pengiriman $pengiriman)
     {
-        $keterangan = PengirimanKeterangan::orderBy('created_at', 'desc')->get();
+        $keterangan = PengirimanKeterangan::orderBy('created_at', 'desc')->where('pengiriman_id', $pengiriman->id)->get();
         return view('admin-jnt.pengiriman.show', compact('pengiriman', 'keterangan'));
     }
 
@@ -55,5 +55,11 @@ class AdminJNTPengirimanController extends Controller
 
         Pengiriman::create($validatedData);
         return redirect('/admin-jnt/pengiriman')->with('success', 'Berhasil tambah pengiriman');
+    }
+
+    public function destroy(Pengiriman $pengiriman)
+    {
+        $pengiriman->delete();
+        return back()->with('success', 'Berhasil Hapus Pengiriman');
     }
 }
