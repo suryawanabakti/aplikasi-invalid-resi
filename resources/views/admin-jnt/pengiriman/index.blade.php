@@ -5,7 +5,9 @@
         <div class="row ">
             <div class="col-md-12 d-flex justify-content-between">
                 <b>PENGIRIMAN</b>
-                <a class="btn btn-primary mb-2" href="/admin-jnt/pengiriman/create">Tambah Pengiriman</a>
+                @role('admin jnt')
+                    <a class="btn btn-primary mb-2" href="/admin-jnt/pengiriman/create">Tambah Pengiriman</a>
+                @endrole
             </div>
         </div>
 
@@ -23,7 +25,9 @@
                                     <th>Barang</th>
                                     <th>Berat</th>
                                     <th>Ongkir</th>
-                                    <th>Aksi</th>
+                                    @role('admin jnt')
+                                        <th>Aksi</th>
+                                    @endrole
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,9 +44,11 @@
                                         <td>{{ $pengiriman->nama_barang }}</td>
                                         <td>{{ $pengiriman->berat }}</td>
                                         <td>{{ $pengiriman->ongkir }}</td>
-                                        <td><a class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ?')"
-                                                href="/admin-jnt/pengiriman/{{ $pengiriman->id }}/delete"><i
-                                                    class="bx bx-trash"></i></a></td>
+                                        @role('admin jnt')
+                                            <td><a class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ?')"
+                                                    href="/admin-jnt/pengiriman/{{ $pengiriman->id }}/delete"><i
+                                                        class="bx bx-trash"></i></a></td>
+                                        @endrole
                                     </tr>
                                 @endforeach
                             </tbody>

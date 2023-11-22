@@ -80,10 +80,12 @@
                         <b>KETERANGAN</b>
                         <span class="float-end">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Tambah Keterangan
-                            </button>
+                            @role('admin jnt')
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Tambah Keterangan
+                                </button>
+                            @endrole
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -108,8 +110,30 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="keterangan" class="form-label">Keterangan</label>
-                                                    <input type="text" class="form-control" name="keterangan"
-                                                        id="keterangan">
+                                                    <select name="keterangan" id="keterangan" class="form-control">
+                                                        <option value="Pesanan di serahkan ke kurir">Pesanan di serahkan ke
+                                                            kurir</option>
+                                                        <option value="Paket tiba dari lokasi transit">Paket tiba dari
+                                                            lokasi transit</option>
+                                                        <option value="Pesanan telah dikirim dari lokasi transit">Pesanan
+                                                            telah dikirim dari lokasi transit</option>
+                                                        <option value="Pesanan telah sampai di lokasi sortir">Pesanan telah
+                                                            sampai di lokasi sortir (Kota pengiriman)</option>
+                                                        <option value="Pesanan sedang di proses di pusat penyortiran">
+                                                            Pesanan sedang di proses di pusat penyortiran (Kota Tujuan)
+                                                        </option>
+                                                        <option value="Pesanan sedang diantar ke alamat tujuan">Pesanan
+                                                            sedang diantar ke alamat tujuan</option>
+                                                        <option value="Pesanan dalam pengiriman">Pesanan dalam pengiriman
+                                                        </option>
+                                                        <option
+                                                            value="Pesanan gagal dikirim karena (sudah melewati pengiriman akan dilakukan ulang esok hari)">
+                                                            Pesanan gagal dikirim karena (sudah melewati pengiriman akan
+                                                            dilakukan ulang esok hari)</option>
+                                                        <option
+                                                            value="Pesanan telah sampai diterima oleh yang bersangkutan">
+                                                            Pesanan telah sampai diterima oleh yang bersangkutan</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -140,3 +164,11 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function() {
+            // $('#keterangan').select2();
+        });
+    </script>
+@endpush

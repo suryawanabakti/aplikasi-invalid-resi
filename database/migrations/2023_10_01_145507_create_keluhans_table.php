@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->text('keluhan');
             $table->enum('approve', ['proses', 'terima'])->default('proses');
-            // 
             $table->enum('status_masalah', ['belum selesai', 'selesai'])->default('belum selesai');
             $table->text('keterangan')->nullable();
             $table->timestamps();

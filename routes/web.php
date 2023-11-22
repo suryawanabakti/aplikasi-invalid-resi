@@ -6,7 +6,9 @@ use App\Http\Controllers\AdminJNTPengirimanController;
 use App\Http\Controllers\AdminKeluhanController;
 use App\Http\Controllers\AdminPengajuanSuratController;
 use App\Http\Controllers\CustomerKeluhanController;
+use App\Http\Controllers\CustomerPengajuanController;
 use App\Http\Controllers\CustomerPengirimanController;
+use App\Http\Controllers\CustomerVerifikasiController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Keluhan;
 use App\Models\Pengiriman;
@@ -55,8 +57,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/customer/pengiriman', [CustomerPengirimanController::class, 'search'])->name('customer.pengiriman.search');
     Route::post('/customer/pengiriman/{pengiriman}/keluhan', [CustomerPengirimanController::class, 'keluhan'])->name('customer.pengiriman.keluhan');
 
+    Route::get('/customer/pengajuan', [CustomerPengajuanController::class, 'index'])->name('customer.pengajuan.index');
+    Route::post('/customer/pengajuan', [CustomerPengajuanController::class, 'store'])->name('customer.pengajuan.store');
 
     Route::get('/customer/keluhan', [CustomerKeluhanController::class, 'index'])->name('customer.keluhan.index');
+    Route::get('/customer/keluhan/delete/{keluhan}', [CustomerKeluhanController::class, 'destroy'])->name('customer.keluhan.destroy');
+
+    Route::get('/customer/verifikasi', [CustomerVerifikasiController::class, 'index'])->name('customer.verifikasi.index');
+
+    Route::get('/customer/verifikasi/terima/{keluhan}', [CustomerVerifikasiController::class, 'terima'])->name('customer.verifikasi.terima');
+
 
     Route::get('/admin/master-data/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::get('/admin/master-data/users/create', [UserController::class, 'create'])->name('admin.users.create');
@@ -64,6 +74,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/keluhan', [AdminKeluhanController::class, 'index'])->name('admin.keluhan.index');
     Route::patch('/admin/keluhan/{keluhan}', [AdminKeluhanController::class, 'update'])->name('admin.keluhan.update');
+
+    Route::get('/admin/verifikasi', [AdminKeluhanController::class, 'verifikasi'])->name('admin.keluhan.verifikasi');
+
+
+    Route::get('/admin/pengajuan', [AdminJNTKeluhanController::class, 'index'])->name('admin.pengajuan.index');
+    Route::get('/admin/pengajuan/{keluhan}/terima', [AdminJNTKeluhanController::class, 'terima'])->name('admin.pengajuan.terima');
+    Route::get('/admin/pengajuan/{keluhan}/tolak', [AdminJNTKeluhanController::class, 'tolak'])->name('admin.pengajuan.tolak');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

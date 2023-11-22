@@ -46,7 +46,7 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/assets/js/config.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <style>
         @media only screen and (max-width: 600px) {
@@ -91,7 +91,7 @@
                                 class="container-fluid d-flex flex-md-row flex-column justify-content-between align-items-md-center gap-1 container-p-x py-3">
                                 <div>
                                     <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/landing/"
-                                        target="_blank" class="footer-text fw-bolder">Tifanni</a>
+                                        target="_blank" class="footer-text fw-bolder">Tiffani</a>
                                     ©
                                 </div>
                                 <div>
@@ -152,11 +152,14 @@
 
     <!-- Page JS -->
     <script src="/assets/js/dashboards-analytics.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
     @stack('js')
     <script>
         $(document).ready(function() {
@@ -174,6 +177,7 @@
             }
         })
     </script>
+
 </body>
 
 </html>

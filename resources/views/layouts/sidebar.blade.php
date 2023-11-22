@@ -22,7 +22,19 @@
                     <div data-i18n="Analytics">Dashboard</div>
                 </a>
             </li>
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Admin Menu</span></li>
+            <li class="menu-item {{ request()->is('customer/pengiriman*') ? 'active' : '' }}">
+                <a href="/customer/pengiriman" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-file-find"></i>
+                    <div data-i18n="Pengiriman">Validasi Resi</div>
+                </a>
+            </li>
+            <li class="menu-item {{ Request::is('admin-jnt/pengiriman*') ? 'active open' : '' }}">
+                <a href="/admin-jnt/pengiriman" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-package"></i>
+                    <div data-i18n="Pengiriman">Pengiriman</div>
+                </a>
+            </li>
+            {{--             
             <li class="menu-item {{ Request::is('admin/master-data*') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -35,11 +47,24 @@
                         </a>
                     </li>
                 </ul>
+            </li> --}}
+
+            <li class="menu-item {{ Request::is('admin/pengajuan*') ? 'active open' : '' }}">
+                <a href="/admin/pengajuan" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-send"></i>
+                    <div data-i18n="pengajuan">Keluhan</div>
+                </a>
             </li>
             <li class="menu-item {{ Request::is('admin/keluhan*') ? 'active open' : '' }}">
                 <a href="/admin/keluhan" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-error"></i>
-                    <div data-i18n="Keluhan">Keluhan</div>
+                    <i class="menu-icon tf-icons bx bxs-file-export"></i>
+                    <div data-i18n="Keluhan">Tindak Lanjut</div>
+                </a>
+            </li>
+            <li class="menu-item {{ Request::is('admin/verifikasi*') ? 'active open' : '' }}">
+                <a href="/admin/verifikasi" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-badge-check"></i>
+                    <div data-i18n="verifikasi">Hasil Tindak Lanjut</div>
                 </a>
             </li>
         @endrole
@@ -57,12 +82,13 @@
                     <div data-i18n="Pengiriman">Pengiriman</div>
                 </a>
             </li>
-            <li class="menu-item {{ Request::is('admin-jnt/keluhan*') ? 'active open' : '' }}">
+
+            {{-- <li class="menu-item {{ Request::is('admin-jnt/keluhan*') ? 'active open' : '' }}">
                 <a href="/admin-jnt/keluhan" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-error-alt"></i>
                     <div data-i18n="Keluhan">Keluhan</div>
                 </a>
-            </li>
+            </li> --}}
         @endrole
         @role('customer')
             <li class="menu-item {{ Request::is('customer/dashboard') ? 'active open' : '' }}">
@@ -75,14 +101,25 @@
             <li class="menu-item {{ request()->is('customer/pengiriman*') ? 'active' : '' }}">
                 <a href="/customer/pengiriman" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-truck"></i>
-                    <div data-i18n="Pengiriman">Pengiriman</div>
+                    <div data-i18n="Pengiriman">Validasi Resi</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('customer/pengajuan*') ? 'active' : '' }}">
+                <a href="/customer/pengajuan" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-send"></i>
+                    <div data-i18n="Keluhan">Pengajuan</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->is('customer/keluhan*') ? 'active' : '' }}">
                 <a href="/customer/keluhan" class="menu-link">
-
-                    <i class="menu-icon tf-icons bx bx-error-alt"></i>
+                    <i class="menu-icon tf-icons bx bx-file"></i>
                     <div data-i18n="Keluhan">Keluhan</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('customer/verifikasi*') ? 'active' : '' }}">
+                <a href="/customer/verifikasi" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-badge-check"></i>
+                    <div data-i18n="verifikasi">Verifikasi</div>
                 </a>
             </li>
         @endrole

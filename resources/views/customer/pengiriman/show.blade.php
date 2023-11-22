@@ -11,10 +11,12 @@
                                 <b>Pengiriman Dengan Nomor Resi : {{ $pengiriman->no_resi }}</b>
 
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                    Laporkan Masalah
-                                </button>
+                                @role('customer')
+                                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Laporkan Masalah
+                                    </button>
+                                @endrole
 
 
                             </div>
@@ -37,6 +39,29 @@
                                 <label for="nama" class="form-label">Ongkir</label>
                                 <input type="text" class="form-control" disabled
                                     value="{{ number_format($pengiriman->ongkir) }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mt-2">
+                                    <div class="card-header">
+                                        <b>KETERANGAN</b>
+
+                                    </div>
+                                    <div class="card-body ">
+                                        <table cellpadding="5">
+                                            @foreach ($keterangan as $ket)
+                                                <tr>
+                                                    <td width="200px">
+                                                        {{ \Carbon\Carbon::createFromDate($ket->waktu)->format('d M Y H:i') }}
+                                                    </td>
+                                                    <td>{{ $ket->keterangan }}</td>
+                                                </tr>
+                                            @endforeach
+
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

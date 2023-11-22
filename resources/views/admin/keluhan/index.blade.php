@@ -15,30 +15,33 @@
                         <table class="table table-hovered" id="myTable">
                             <thead>
                                 <tr>
+                                    <th>Nama User</th>
+                                    <th>Jenis Barang</th>
                                     <th>No.Resi</th>
                                     <th>Keluhan</th>
-                                    <th>Status</th>
-                                    <th>Penyelesaian</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($keluhanKeluhan as $keluhan)
                                     <tr>
+                                        <td>{{ $keluhan->user->name }}</td>
+                                        <td>{{ $keluhan->pengiriman->nama_barang }}</td>
                                         <td>{{ $keluhan->pengiriman->no_resi }}</td>
                                         <td>{{ $keluhan->keluhan }}</td>
-                                        <td>
+                                        {{-- <td>
                                             @if ($keluhan->status_masalah == 'belum selesai')
-                                                <span class="badge bg-warning">{{ $keluhan->status_masalah }}</span>
+                                                <span class="badge bg-warning">proses</span>
                                             @endif
                                             @if ($keluhan->status_masalah == 'selesai')
-                                                <span class="badge bg-success">{{ $keluhan->status_masalah }}</span>
+                                                <span class="badge bg-success">diproses</span>
                                             @endif
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             @if ($keluhan->status_masalah == 'belum selesai')
                                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal{{ $keluhan->id }}">
-                                                    Penyelesaian Masalah
+                                                    Beri Keterangan
                                                 </button>
                                             @else
                                                 {{ $keluhan->keterangan }}
@@ -61,9 +64,48 @@
                                                             @method('PATCH')
                                                             <div class="modal-body">
                                                                 <div class="mb-3">
-                                                                    <label for=""
+                                                                    <label for="keterangan"
                                                                         class="form-label">Keterangan</label>
-                                                                    <textarea required name="keterangan" id="keterangan" class="form-control" cols="30" rows="10"></textarea>
+                                                                    <select name="keterangan" id="keterangan"
+                                                                        class="form-control">
+                                                                        <option value="Pesanan di serahkan ke kurir">
+                                                                            Pesanan di serahkan ke
+                                                                            kurir</option>
+                                                                        <option value="Paket tiba dari lokasi transit">
+                                                                            Paket tiba dari
+                                                                            lokasi transit</option>
+                                                                        <option
+                                                                            value="Pesanan telah dikirim dari lokasi transit">
+                                                                            Pesanan
+                                                                            telah dikirim dari lokasi transit</option>
+                                                                        <option
+                                                                            value="Pesanan telah sampai di lokasi sortir">
+                                                                            Pesanan telah
+                                                                            sampai di lokasi sortir (Kota pengiriman)
+                                                                        </option>
+                                                                        <option
+                                                                            value="Pesanan sedang di proses di pusat penyortiran">
+                                                                            Pesanan sedang di proses di pusat
+                                                                            penyortiran (Kota Tujuan)
+                                                                        </option>
+                                                                        <option
+                                                                            value="Pesanan sedang diantar ke alamat tujuan">
+                                                                            Pesanan
+                                                                            sedang diantar ke alamat tujuan</option>
+                                                                        <option value="Pesanan dalam pengiriman">Pesanan
+                                                                            dalam pengiriman
+                                                                        </option>
+                                                                        <option
+                                                                            value="Pesanan gagal dikirim karena (sudah melewati pengiriman akan dilakukan ulang esok hari)">
+                                                                            Pesanan gagal dikirim karena (sudah melewati
+                                                                            pengiriman akan
+                                                                            dilakukan ulang esok hari)</option>
+                                                                        <option
+                                                                            value="Pesanan telah sampai diterima oleh yang bersangkutan">
+                                                                            Pesanan telah sampai diterima oleh yang
+                                                                            bersangkutan</option>
+                                                                    </select>
+
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
